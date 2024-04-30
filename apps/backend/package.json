@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.10",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.0.2",
+    "@elysiajs/static": "^1.0.3",
+    "@elysiajs/swagger": "^1.0.4",
+    "@prisma/cli": "^2.20.1",
+    "@prisma/client": "^5.13.0",
+    "@sinclair/typebox": "^0.32.27",
+    "elysia": "^1.0.15",
+    "logixlysia": "3.1.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "bun-types": "^1.1.6"
+  },
+  "module": "src/index.ts",
+  "bun-create": {
+    "start": "bun run src/index.ts"
+  }
+}
