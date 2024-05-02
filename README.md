@@ -20,6 +20,7 @@ $ bun install
 # รันคำสั่งนี้แค่ครั้งแรก ของการติดตั้งโปรแกรม
 $ copy .env.example .env
 $ copy ./apps/frontend/.env.example ./apps/frontend/.env
+$ copy ./apps/backend/.env.example ./apps/backend/.env
 ```
 
 ## ตัวอย่างการตั้งค่าไฟล์ .env (frontend: ./apps/frontend)
@@ -30,13 +31,20 @@ NUXT_API_SECRET=api_secret_token
 PORT=3001
 ```
 
+## ตัวอย่างการตั้งค่าไฟล์ .env (backend: ./apps/backend)
+
+```bash
+ELYSIA_API_URL=http://localhost
+PORT=3001
+```
+
 ## ตัวอย่างการตั้งค่าไฟล์ .env (prisma)
 
 ```bash
-DB_HOST=127.0.0.1
-DB_PORT=1433
+DB_HOST=localhost
+DB_PORT=
 DB_DATABASE=
-DB_USERNAME=SA
+DB_USERNAME=
 DB_PASSWORD=
 
 DATABASE_URL=sqlserver://${DB_HOST}:${DB_PORT};database=${DB_DATABASE};user=${DB_USERNAME};password=${DB_PASSWORD};trustServerCertificate=true
