@@ -16,6 +16,7 @@ $ npm install
 
 ```bash
 # รันคำสั่งนี้แค่ครั้งแรก ของการติดตั้งโปรแกรม
+$ copy .env.example .env
 $ copy ./apps/frontend/.env.example ./apps/frontend/.env
 ```
 
@@ -25,6 +26,18 @@ $ copy ./apps/frontend/.env.example ./apps/frontend/.env
 # This will override the value of apiSecret
 NUXT_API_SECRET=api_secret_token
 PORT=3001
+```
+
+## ตัวอย่างการตั้งค่าไฟล์ .env (prisma)
+
+```bash
+DB_HOST=127.0.0.1
+DB_PORT=1433
+DB_DATABASE=
+DB_USERNAME=SA
+DB_PASSWORD=
+
+DATABASE_URL=sqlserver://${DB_HOST}:${DB_PORT};database=${DB_DATABASE};user=${DB_USERNAME};password=${DB_PASSWORD};trustServerCertificate=true
 ```
 
 ## ติดตั้ง Prisma CLI
@@ -39,6 +52,11 @@ $ npm install prisma -g
 ```bash
 # รันคำสั่งนี้แค่ครั้งแรก ของการติดตั้งโปรแกรม
 $ npx prisma migrate dev --name init
+```
+
+```bash
+# รันคำสั่งนี้แค่ครั้งแรก ของการติดตั้งโปรแกรม
+$ npx prisma generate
 ```
 
 ```bash
