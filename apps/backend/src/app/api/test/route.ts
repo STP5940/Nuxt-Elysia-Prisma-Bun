@@ -28,6 +28,11 @@ const route = CreateElysia().get(
     }
   },
   {
+    detail: {
+      summary: "nendoroid skadi",
+      description: "Api Test Connection",
+      tags: ["Test Connection"],
+    },
     response: {
       200: t.Object({
         status: t.String(),

@@ -27,6 +27,11 @@ const route = CreateElysia()
       }
     },
     {
+      detail: {
+        summary: "/v1/users",
+        description: "Get Users All",
+        tags: ["User"],
+      },
       response: {
         200: t.Object({
           status: t.String(),
@@ -59,7 +64,7 @@ const route = CreateElysia()
   )
 
   .get(
-    "/users/:id",
+    "/user/:id",
     async ({ params: { id }, set }) => {
       try {
         const user = await getUserById(id);
@@ -74,6 +79,11 @@ const route = CreateElysia()
       }
     },
     {
+      detail: {
+        summary: "/v1/user/:id",
+        description: "Get User By Id",
+        tags: ["User"],
+      },
       response: {
         200: t.Object({
           status: t.String(),
@@ -104,7 +114,7 @@ const route = CreateElysia()
   )
 
   .post(
-    "/users",
+    "/user",
     async ({ body, set }) => {
       try {
         const user = await createUser(body);
@@ -115,6 +125,11 @@ const route = CreateElysia()
       }
     },
     {
+      detail: {
+        summary: "/v1/user",
+        description: "Create User",
+        tags: ["User"],
+      },
       body: t.Object({
         name: t.String(),
         email: t.String(),
@@ -145,7 +160,7 @@ const route = CreateElysia()
   )
 
   .put(
-    "/users/:id",
+    "/user/:id",
     async ({ params: { id }, body, set }) => {
       try {
         const user = await updateUser(id, body);
@@ -156,6 +171,11 @@ const route = CreateElysia()
       }
     },
     {
+      detail: {
+        summary: "/v1/user/:id",
+        description: "Update User By Id",
+        tags: ["User"],
+      },
       body: t.Object({
         name: t.String(),
         email: t.String(),
