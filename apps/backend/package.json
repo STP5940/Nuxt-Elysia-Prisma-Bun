@@ -14,6 +14,7 @@
     "@prisma/client": "^5.13.0",
     "@sinclair/typebox": "^0.32.27",
     "elysia": "^1.0.15",
+    "elysia-rate-limit": "^3.2.2",
     "logixlysia": "3.1.0",
     "zod": "^3.22.4"
   },
