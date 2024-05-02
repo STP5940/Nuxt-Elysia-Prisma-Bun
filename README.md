@@ -7,6 +7,8 @@
 git clone https://github.com/STP5940/Nuxt-Elysia-Prisma-Bun.git
 ```
 
+ติดตั้ง Bun [bun](https://bun.sh/docs/installation)
+
 ## ติดตั้ง package ที่จำเป็นในโปรเจค และตั้งค่า config
 
 ```bash
