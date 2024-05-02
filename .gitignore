@@ -13,6 +13,9 @@ coverage
 out/
 build
 
+# prisma
+/prisma/migrations
+
 # misc
 .DS_Store
 *.pem
@@ -28,6 +31,7 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.env
 
 # turbo
 .turbo

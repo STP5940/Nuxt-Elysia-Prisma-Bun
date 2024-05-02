@@ -3,19 +3,21 @@ generator client {
 }
 
 datasource db {
-    provider = "cockroachdb"
-    url      = env("PRISMA_COCKROACH_DATABASE_URL")
+    provider = "sqlserver"
+    url      = env("DATABASE_URL")
 }
 
 model User {
-    id    Int     @id @default(sequence())
+    id    Int     @id @default(autoincrement())
     email String  @unique
     name  String?
     posts Post[]
+
+    @@map(name: "User")
 }
 
 model Post {
-    id        Int      @id @default(sequence())
+    id        Int      @id @default(autoincrement())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     title     String
@@ -24,4 +26,6 @@ model Post {
     viewCount Int      @default(0)
     author    User?    @relation(fields: [authorId], references: [id])
     authorId  Int?
+
+    @@map(name: "Post")
 }

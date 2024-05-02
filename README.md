@@ -38,12 +38,12 @@ $ npm install prisma -g
 
 ```bash
 # รันคำสั่งนี้แค่ครั้งแรก ของการติดตั้งโปรแกรม
-$ npx prisma migrate dev --name init --schema=./apps/backend/prisma/schema.prisma
+$ npx prisma migrate dev --name init
 ```
 
 ```bash
 # รันคำสั่งนี้แค่ครั้งแรก ของการติดตั้งโปรแกรม
-$ node ./apps/backend/prisma/seed.ts
+$ node ./prisma/seed.js
 ```
 
 ```bash
