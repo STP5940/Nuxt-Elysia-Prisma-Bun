@@ -71,7 +71,7 @@ $ npx prisma generate
 
 ```bash
 # รันคำสั่งนี้แค่ครั้งแรก ของการติดตั้งโปรแกรม
-$ node ./prisma/seed.js
+$ bun run seed
 ```
 
 ## ตัวอย่างการใช้งาน Prisma เพิ่มเติม (Note)

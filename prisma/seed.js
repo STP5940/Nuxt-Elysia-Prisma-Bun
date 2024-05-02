@@ -85,6 +85,7 @@ async function main() {
       await createUserIfNotExists(u);
     }
     console.log(`Seeding finished.`);
+    process.exit();
   } catch (e) {
     console.error('Unable to seed database', e);
   } finally {
