@@ -42,7 +42,6 @@ $ npx prisma migrate dev --name init --schema=./apps/backend/prisma/schema.prism
 ```
 
 ```bash
-# Table: T_Users
 # รันคำสั่งนี้แค่ครั้งแรก ของการติดตั้งโปรแกรม
 $ node ./apps/backend/prisma/seed.ts
 ```
