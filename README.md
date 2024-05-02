@@ -11,7 +11,7 @@ git clone https://github.com/STP5940/Nuxt-Elysia-Prisma-Bun.git
 
 ```bash
 # รันคำสั่งนี้แค่ครั้งแรก ของการติดตั้งโปรแกรม
-$ npm install
+$ bun install
 ```
 
 ```bash
@@ -20,7 +20,7 @@ $ copy .env.example .env
 $ copy ./apps/frontend/.env.example ./apps/frontend/.env
 ```
 
-## ตัวอย่างการตั้งค่าไฟล์ .env (frontend)
+## ตัวอย่างการตั้งค่าไฟล์ .env (frontend: ./apps/frontend)
 
 ```bash
 # This will override the value of apiSecret
@@ -63,6 +63,8 @@ $ npx prisma generate
 # รันคำสั่งนี้แค่ครั้งแรก ของการติดตั้งโปรแกรม
 $ node ./prisma/seed.js
 ```
+
+## ตัวอย่างการใช้งาน Prisma เพิ่มเติม (Note)
 
 ```bash
 # เรียกใช้ Prisma Studio เพื่อใช้แก้ไขข้อมูลในฐานข้อมูล
