@@ -35,7 +35,7 @@ PORT=3001
 
 ```bash
 ELYSIA_API_URL=http://localhost
-PORT=3001
+PORT=3000
 ```
 
 ## ตัวอย่างการตั้งค่าไฟล์ .env (prisma)
@@ -109,11 +109,11 @@ $ pm2 start ecosystem.config.js --env production
 ```
 
 ```bash
-# frontend: ./apps/backend/
+# frontend: ./apps/frontend/
 $ pm2 start ecosystem.config.cjs --env production
 ```
 
-- แสดงโหมดการตรวจสอบแบบเรียลไทม์ของ PM2
+- แสดงโหมดการตรวจสอบแบบเรียลไทม์
 
 ```bash
 $ pm2 monit
