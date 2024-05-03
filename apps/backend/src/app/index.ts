@@ -1,6 +1,8 @@
 import swagger from "@elysiajs/swagger";
 
 import { CreateElysia } from "../utils/elysia";
+import { env } from "../env";
+
 import { APIRoute } from "./api/groupRoute";
 
 const app = CreateElysia()
@@ -10,7 +12,7 @@ const app = CreateElysia()
       autoDarkMode: true,
       documentation: {
         info: {
-          title: "🦊 Elysia MVC",
+          title: `🦊 Elysia MVC [${env.NODE_ENV.toUpperCase()}]`,
           description: "Simple MVC pattern for ElysiaJS with User and Post",
           version: "1.0.0",
           license: {
@@ -22,6 +24,16 @@ const app = CreateElysia()
             url: "https://pungrumpy.com",
           },
         },
+        tags: [
+          {
+            name: "Test Connection",
+            description: "Not Connected to Database",
+          },
+          {
+            name: "User",
+            description: "Connected to Database",
+          },
+        ],
       },
     })
   )
