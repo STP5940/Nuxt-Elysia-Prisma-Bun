@@ -21,6 +21,8 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
+    "@elysiajs/cookie": "^0.8.0",
+    "@elysiajs/jwt": "^1.0.2",
     "bun-types": "^1.0.1"
   },
   "packageManager": "pnpm@7.5.1"
