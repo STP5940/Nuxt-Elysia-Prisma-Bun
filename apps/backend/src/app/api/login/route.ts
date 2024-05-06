@@ -17,9 +17,9 @@ const route = CreateElysia().get(
   },
   {
     detail: {
-      summary: "/v1/sign",
-      description: "Users Sign",
-      tags: ["Sign"],
+      summary: "/v1/login",
+      description: "Users Login",
+      tags: ["Login"],
     },
 
     response: {

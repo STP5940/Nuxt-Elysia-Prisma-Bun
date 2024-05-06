@@ -1,5 +1,5 @@
 import { route as TestRoute } from "./test/route";
-import { route as SignRoute } from "./sign/route";
+import { route as SignRoute } from "./login/route";
 import { route as UserRoute } from "./user/route";
 
 import { CreateElysia } from "../../utils/elysia";
