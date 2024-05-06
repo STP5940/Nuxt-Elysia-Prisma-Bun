@@ -39,7 +39,7 @@ const CreateElysia = () =>
       };
     })
     .use(logger())
-    .use(cors())
+    .use(cors({ origin: true }))
     .derive((ctx) => contextRequest(ctx.request));
 
 export { CreateElysia };

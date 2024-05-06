@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { api } from "libs";
 
-const { data, error } = await api.nendoroid.skadi.get();
+// ส่งคำขอ API และไม่ระบุ Cookie ในส่วนของคำขอ
+const { data: skadiData, error: skadiError } = await api.nendoroid.skadi.get();
+const { data: userData, error: userError } = await api.v1.users.get();
 
-if (error) throw error;
+if (skadiError) throw skadiError;
+// if (userError) throw userError;
 
-const { id, name, cover, type, license } = data.response;
+const { id, name, cover, type, license } = skadiData?.response;
 
 const route = useRoute();
 const runtimeConfig = useRuntimeConfig();
@@ -58,7 +61,11 @@ const showAlert = async (_Language: string) => {
       </div>
     </div>
     <br />
-    <pre>{{ data }}</pre>
+    <AppAlert> skadiData:</AppAlert>
+    <pre>{{ skadiData }}</pre>
+    <br />
+    <AppAlert> userData:</AppAlert>
+    <pre>{{ userData }}</pre>
     <br />
     <h1>Nuxt Routing set up successfully!</h1>
     <p>Current route: {{ route.path }}</p>
