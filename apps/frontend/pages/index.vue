@@ -65,7 +65,49 @@ const showAlert = async (_Language: string) => {
     <pre>{{ skadiData }}</pre>
     <br />
     <AppAlert> userData:</AppAlert>
-    <pre>{{ userData }}</pre>
+
+    <div class="relative overflow-x-auto">
+      <table
+        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+      >
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3">Product name</th>
+            <th scope="col" class="px-6 py-3">Color</th>
+            <th scope="col" class="px-6 py-3">Category</th>
+            <th scope="col" class="px-6 py-3">Price</th>
+          </tr>
+        </thead>
+        <tbody
+          v-for="(userDataItem, userDataIndex) in userData?.response"
+          :key="userDataIndex"
+        >
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <th
+              scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center"
+            >
+              {{ userDataItem.id }}
+            </th>
+            <td class="px-6 py-4">{{ userDataItem.name }}</td>
+            <td class="px-6 py-4">{{ userDataItem.email }}</td>
+            <td class="px-6 py-4">
+              <div
+                v-for="(post, postsIndex) in userDataItem.posts"
+                :key="postsIndex"
+                class="py-3"
+              >
+                {{ post.id }}. {{ post.title }} {{ post.content }}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- <pre>{{ userData }}</pre> -->
     <br />
     <h1>Nuxt Routing set up successfully!</h1>
     <p>Current route: {{ route.path }}</p>
