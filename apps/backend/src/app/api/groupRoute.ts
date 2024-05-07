@@ -12,7 +12,7 @@ const route = CreateElysia()
       beforeHandle({ set, profile }) {
         if (!profile) {
           set.status = 401;
-          return "Unauthorized";
+          return { status: "error", response: "Unauthorized" };
         }
       },
     },

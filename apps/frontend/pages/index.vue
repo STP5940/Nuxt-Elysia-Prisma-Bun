@@ -1,22 +1,42 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { api } from "libs";
+
+const route = useRoute();
+const runtimeConfig = useRuntimeConfig();
+const appConfig = useAppConfig();
+const userData = ref<any>([]);
 
 // ส่งคำขอ API และไม่ระบุ Cookie ในส่วนของคำขอ
 const { data: skadiData, error: skadiError } = await api.nendoroid.skadi.get();
-const { data: userData, error: userError } = await api.v1.users.get();
+// const { data: userData, error: userError } = await api.v1.users.get();
 
 if (skadiError) throw skadiError;
 // if (userError) throw userError;
 
 const { id, name, cover, type, license } = skadiData?.response;
 
-const route = useRoute();
-const runtimeConfig = useRuntimeConfig();
-const appConfig = useAppConfig();
-
 const showAlert = async (_Language: string) => {
   alert("Hello " + _Language);
 };
+
+const authGet = async () => {
+  await api.v1.sign["Nuxtjsdev"].get();
+  usersGet();
+};
+
+const usersGet = async () => {
+  const { data, error } = await api.v1.users.get();
+
+  if (error) {
+    console.error("Error fetching user data:", data);
+    return;
+  }
+
+  userData.value = data;
+};
+
+usersGet();
 </script>
 
 <template>
@@ -66,7 +86,7 @@ const showAlert = async (_Language: string) => {
     <br />
     <AppAlert> userData:</AppAlert>
 
-    <div class="relative overflow-x-auto">
+    <div v-if="userData?.status == 'success'" class="relative overflow-x-auto">
       <table
         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
       >
@@ -105,10 +125,18 @@ const showAlert = async (_Language: string) => {
           </tr>
         </tbody>
       </table>
+      <br />
+    </div>
+    <div v-else>
+      <SpecialVButton
+        class="mb-4"
+        buttonText="Sing In [GET JWT Token]"
+        @click="authGet()"
+      />
     </div>
 
     <!-- <pre>{{ userData }}</pre> -->
-    <br />
+
     <h1>Nuxt Routing set up successfully!</h1>
     <p>Current route: {{ route.path }}</p>
     <a href="https://nuxt.com/docs/getting-started/routing" target="_blank"
