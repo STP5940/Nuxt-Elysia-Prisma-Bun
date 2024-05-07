@@ -6,29 +6,12 @@ const route = useRoute();
 const runtimeConfig = useRuntimeConfig();
 const appConfig = useAppConfig();
 
-interface UsersType {
-  status: string;
-  response: {
-    name: string;
-    id: number;
-    email: string;
-    posts: {
-      id: number;
-      title: string;
-      content: string;
-      published: boolean;
-    }[];
-  }[];
-}
-
-const userData = ref<UsersType | null>(null);
+const userData = ref<Awaited<ReturnType<typeof api.v1.users.get>> | null>(null);
 
 // ส่งคำขอ API และไม่ระบุ Cookie ในส่วนของคำขอ
 const { data: skadiData, error: skadiError } = await api.nendoroid.skadi.get();
-// const { data: userData, error: userError } = await api.v1.users.get();
 
 if (skadiError) throw skadiError;
-// if (userError) throw userError;
 
 const { id, name, cover, type, license } = skadiData?.response;
 
@@ -42,13 +25,12 @@ const authGet = async () => {
 };
 
 const usersGet = async () => {
-  const { data, error } = await api.v1.users.get();
-
-  if (error) {
-    console.error("Error fetching user data:", data);
-    return;
+  try {
+    userData.value = await api.v1.users.get();
+    if (userData.value.error) throw userData.value.data;
+  } catch (err) {
+    console.error("Error fetching user data:", err);
   }
-  userData.value = data;
 };
 
 onMounted(async () => {
@@ -102,8 +84,10 @@ onMounted(async () => {
     <pre>{{ skadiData }}</pre>
     <br />
     <AppAlert> ข้อมูลจาก api ที่มีการเชื่อมต่อฐานข้อมูล และเช็ค jwtToken</AppAlert>
-
-    <div v-if="userData?.status == 'success'" class="relative overflow-x-auto">
+    <div
+      v-if="userData && userData?.data?.status == 'success'"
+      class="relative overflow-x-auto"
+    >
       <table
         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
       >
@@ -118,7 +102,7 @@ onMounted(async () => {
           </tr>
         </thead>
         <tbody
-          v-for="(userDataItem, userDataIndex) in userData?.response"
+          v-for="(userDataItem, userDataIndex) in userData?.data.response"
           :key="userDataIndex"
         >
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -127,6 +111,7 @@ onMounted(async () => {
               class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center"
             >
               {{ userDataItem.id }}
+              <!-- {{ result!.data.username }} -->
             </th>
             <td class="px-6 py-4">{{ userDataItem.name }}</td>
             <td class="px-6 py-4">{{ userDataItem.email }}</td>
@@ -147,7 +132,8 @@ onMounted(async () => {
       </table>
       <br />
     </div>
-    <div v-else>
+
+    <div v-if="userData?.error">
       <SpecialVButton
         class="mb-4"
         buttonText="SING IN [GET JWT TOKEN]"
