@@ -5,7 +5,23 @@ import { api } from "libs";
 const route = useRoute();
 const runtimeConfig = useRuntimeConfig();
 const appConfig = useAppConfig();
-const userData = ref<any>([]);
+
+interface UsersType {
+  status: string;
+  response: {
+    name: string;
+    id: number;
+    email: string;
+    posts: {
+      id: number;
+      title: string;
+      content: string;
+      published: boolean;
+    }[];
+  }[];
+}
+
+const userData = ref<UsersType | null>(null);
 
 // ส่งคำขอ API และไม่ระบุ Cookie ในส่วนของคำขอ
 const { data: skadiData, error: skadiError } = await api.nendoroid.skadi.get();
@@ -32,11 +48,12 @@ const usersGet = async () => {
     console.error("Error fetching user data:", data);
     return;
   }
-
   userData.value = data;
 };
 
-usersGet();
+onMounted(async () => {
+  usersGet();
+});
 </script>
 
 <template>
