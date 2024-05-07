@@ -25,9 +25,9 @@ const CreateElysia = () =>
     .use(
       jwt({
         name: "jwt",
-        secret: "dev",
+        secret: env.SECRET_KEY,
         sub: "auth",
-        exp: "1d",
+        exp: "7d",
         schema: t.Object({
           name: t.String(),
         }),

@@ -41,7 +41,7 @@ usersGet();
 
 <template>
   <div>
-    <AppAlert> Change a few things up and try submitting again.</AppAlert>
+    <AppAlert> ข้อมูลจาก api ที่ไม่มีการเชื่อมต่อฐานข้อมูล</AppAlert>
 
     <div class="grid gap-4">
       <div class="grid grid-cols-4 gap-12">
@@ -81,10 +81,10 @@ usersGet();
       </div>
     </div>
     <br />
-    <AppAlert> skadiData:</AppAlert>
+    <AppAlert> ตัวอย่างข้อมูลที่ได้จาก api</AppAlert>
     <pre>{{ skadiData }}</pre>
     <br />
-    <AppAlert> userData:</AppAlert>
+    <AppAlert> ข้อมูลจาก api ที่มีการเชื่อมต่อฐานข้อมูล และเช็ค jwtToken</AppAlert>
 
     <div v-if="userData?.status == 'success'" class="relative overflow-x-auto">
       <table
@@ -119,7 +119,10 @@ usersGet();
                 :key="postsIndex"
                 class="py-3"
               >
-                {{ post.id }}. {{ post.title }} {{ post.content }}
+                {{ post.id }}. {{ post.title }} <br />Link:
+                <a :href="post.content" target="_blank" style="color: blue">
+                  {{ post.content }}
+                </a>
               </div>
             </td>
           </tr>
@@ -130,7 +133,7 @@ usersGet();
     <div v-else>
       <SpecialVButton
         class="mb-4"
-        buttonText="Sing In [GET JWT Token]"
+        buttonText="SING IN [GET JWT TOKEN]"
         @click="authGet()"
       />
     </div>
