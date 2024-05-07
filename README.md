@@ -36,6 +36,9 @@ PORT=3001
 ```bash
 ELYSIA_API_URL=http://localhost
 PORT=3000
+NODE_ENV=development # or production
+
+SECRET_KEY=your_default_secret_key_here
 ```
 
 ## ตัวอย่างการตั้งค่าไฟล์ .env (prisma)
