@@ -9,6 +9,7 @@ const route = CreateElysia().get(
     auth.set({
       value: await jwt.sign(params),
       httpOnly: true,
+      sameSite: true,
       maxAge: 7 * 86400,
       path: "/",
     });
